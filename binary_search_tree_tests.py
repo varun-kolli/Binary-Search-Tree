@@ -47,10 +47,10 @@ class TestLab4(unittest.TestCase):
         r = BinarySearchTree()
         self.assertEqual(r.level_order_list(), [])
         r.insert(10, "yssir")
-        r.insert(20, "fuck")
-        r.insert(5, "fuck")
-        r.insert(3, "fuck")
-        r.insert(25, "fuck")
+        r.insert(20, "f")
+        r.insert(5, "b")
+        r.insert(3, "l")
+        r.insert(25, "f")
         self.assertEqual(r.level_order_list(), [10, 5, 20, 3, 25])
 
 

@@ -106,36 +106,20 @@ class BinarySearchTree:
         l = []
         return self.preorder_helper(self.root, l)
 
-    def level_helper(self, node, n, q):
-
-        if node is None:
-            return q
-
-        if n == 0:
-            q.enqueue(node.key)
-
-
-        lefty = self.level_helper(node.left, n - 1, q)
-        righty = self.level_helper(node.right, n - 1, q)
-
-        return lefty or righty
 
     def level_order_list(self):  # return Python list of BST keys representing level-order traversal of BST
         # You MUST use your queue_array data structure from lab 3 to implement this method
         q = Queue(25000) # Don't change this!
         l = []
-        x = 0
+        q.enqueue(self.root)
         if self.is_empty():
             return l
-        else:
-            height = self.tree_height()
-            for i in range(height + 1):
-                x = self.level_helper(self.root, i, q)
-        for i in range(x.size()):
-            l.append(x.dequeue())
+        while q.size() > 0:
+            x = q.dequeue()
+            l.append(x.key)
+            if x.left is not None:
+                q.enqueue(x.left)
+            if x.right is not None:
+                q.enqueue(x.right)
         return l
-
-
-
-
 
