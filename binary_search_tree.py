@@ -71,22 +71,22 @@ class BinarySearchTree:
             it = it.right
         return (it.key, it.data)
 
+    def height_helper(self, root):
+        if (root == None):
+            return -1
+        lefty = self.height_helper(root.left)
+        righty = self.height_helper(root.right)
+        return (max(lefty, righty) + 1)
+
     def tree_height(self): # return the height of the tree
         # returns None if tree is empty
         if self.is_empty():
             return None
-        else:
-            lefty = self.root
-            l_count = -1
-            r_count = -1
-            while lefty.left is not None:
-                l_count += 1
-                lefty = lefty.left
-            righty = self.root
-            while righty.right is not None:
-                r_count += 1
-                righty = righty.right
-            return max(l_count, r_count) + 1
+
+        if self.root.left == None and self.root.right == None:
+            return 0
+
+        return self.height_helper(self.root)
 
     def inorder_helper(self, node, l):
         if node is not None:
