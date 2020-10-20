@@ -54,6 +54,8 @@ class BinarySearchTree:
 
     def find_min(self): # returns a tuple with min key and data in the BST
         # returns None if the tree is empty
+        if self.is_empty():
+            return None
         it = self.root
         while it.left is not None:
             it = it.left
@@ -62,6 +64,8 @@ class BinarySearchTree:
 
     def find_max(self): # returns a tuple with max key and data in the BST
         # returns None if the tree is empty
+        if self.is_empty():
+            return None
         it = self.root
         while it.right is not None:
             it = it.right
@@ -73,8 +77,8 @@ class BinarySearchTree:
             return None
         else:
             lefty = self.root
-            l_count = 0
-            r_count = 0
+            l_count = -1
+            r_count = -1
             while lefty.left is not None:
                 l_count += 1
                 lefty = lefty.left
@@ -82,7 +86,7 @@ class BinarySearchTree:
             while righty.right is not None:
                 r_count += 1
                 righty = righty.right
-            return max(l_count, r_count)
+            return max(l_count, r_count) + 1
 
     def inorder_helper(self, node, l):
         if node is not None:
@@ -98,8 +102,8 @@ class BinarySearchTree:
     def preorder_helper(self, node, l):
         if node is not None:
             l.append(node.key)
-            self.inorder_helper(node.left, l)
-            self.inorder_helper(node.right, l)
+            self.preorder_helper(node.left, l)
+            self.preorder_helper(node.right, l)
         return l
 
     def preorder_list(self):  # return Python list of BST keys representing pre-order traversal of BST

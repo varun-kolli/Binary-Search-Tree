@@ -53,6 +53,11 @@ class TestLab4(unittest.TestCase):
         r.insert(25, "f")
         self.assertEqual(r.level_order_list(), [10, 5, 20, 3, 25])
 
+    def test_extra(self):
+        r = BinarySearchTree()
+        self.assertIsNone(r.find_min())
+        self.assertIsNone(r.find_max())
+
 
 
 if __name__ == '__main__': 
